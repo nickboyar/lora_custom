@@ -1,0 +1,25 @@
+# Core
+torch>=2.2.0
+torchvision>=0.17.0
+accelerate>=0.33.0
+transformers>=4.43.0
+diffusers>=0.30.0
+safetensors>=0.4.0
+peft>=0.12.0
+bitsandbytes>=0.43.0
+
+# Data / IO
+opencv-python>=4.8.0.76
+Pillow>=10.3.0
+numpy>=1.26.0
+tqdm>=4.66.0
+pyyaml>=6.0.2
+
+# API
+fastapi>=0.112.0
+uvicorn>=0.30.0
+
+# Demo
+streamlit>=1.36.0
+
+

@@ -1,0 +1,55 @@
+pretrained_model_name_or_path: "stable-diffusion-v1-5/stable-diffusion-v1-5"
+data_dir: "train_dir2"
+all_lora_dir: "lora_dir"
+lora_dir: "anime2"
+gradient_accumulation_steps: 1
+mixed_precision: None
+report_to: "tensorboard"
+
+seed: 42
+
+lora_config:
+    rank: 16
+    lora_alpha: 16
+    init_lora_weights: "gaussian"
+    target_modules: ["to_k", "to_q", "to_v", "to_out.0"]
+
+optimizer:
+    learning_rate: 1e-04
+    adam_beta1: 0.9
+    adam_beta2: 0.999
+    adam_weight_decay: 1e-2
+    adam_epsilon: 1e-08
+image:
+    resolution: 512
+    center_crop: False
+    image_interpolation_mode: "LANCZOS"
+train:
+    batch_size: 1
+    dataloader_num_workers: 1
+    lr_warmup_steps: 0
+    max_train_steps: 15000
+
+validation_prompt: 'a man with dark hair and brown eyes'
+
+image_column: 'image'
+caption_column: 'text'
+
+lr_scheduler: "cosine"
+max_grad_norm: 1.0
+
+lr_warmup_steps: 0
+max_train_steps: 15000
+checkpointing_steps: 500
+num_train_epochs: 500
+validation_epochs: 1
+
+
+# tensorboard:
+#     server: "http://127.0.1.1:8081"
+#     experiment_name: "Lora test 1"
+# dvc:
+#     pull: "dvc pull"
+#     add_model: "dvc add model"
+#     push: "dvc push"
+

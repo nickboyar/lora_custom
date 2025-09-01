@@ -1,0 +1,83 @@
+
+
+pretrained_model_name_or_path: "stable-diffusion-v1-5/stable-diffusion-v1-5"
+data_dir: "/data/nboyarkin/lora_custom_tune/lora_custom/tmp/train/train_dir2"
+all_lora_dir: "/data/nboyarkin/lora_custom_tune/lora_custom/lora_dir/"
+lora_dir: "anime"
+logging_dir: '/data/nboyarkin/lora_custom_tune/lora_custom/log_dir'
+gradient_accumulation_steps: 1
+mixed_precision: None
+report_to: "tensorboard"
+
+image_interpolation_mode: "LANCZOS"
+
+seed: 42
+
+
+lora_config:
+    rank: 16
+    lora_alpha: 16
+    init_lora_weights: "gaussian"
+    target_modules: ["to_k", "to_q", "to_v", "to_out.0"]
+
+optimizer:
+    learning_rate: 1e-04
+    adam_beta1: 0.9
+    adam_beta2: 0.999
+    adam_weight_decay: 1e-2
+    adam_epsilon: 1e-08
+
+    
+image:
+    resolution: 512
+    center_crop: False
+
+train:
+    batch_size: 1
+    dataloader_num_workers: 1
+    lr_warmup_steps: 0
+    max_train_steps: 15000
+
+validation_prompt: "A naruto with blue eyes."
+
+image_column: 'image'
+caption_column: 'text'
+
+lr_scheduler: "cosine"
+max_grad_norm: 1.0
+
+lr_warmup_steps: 0
+max_train_steps: 15000
+checkpointing_steps: 500
+num_train_epochs: 5
+validation_epochs: 1
+
+
+    
+
+# data_path:
+#     train_data: data/train_data/
+#     test_data: data/test_data/
+#     onnx_save_path: model
+#     result_data: result/
+#     name_pred_ending: "_pred_mask.jpg"
+#     name_model: "model.onnx"
+# resize:
+#     size: 256
+#     mode: "constant"
+#     threshold: 0.5
+# train_prep:
+#     num_train: 80
+#     batch_size: 8
+#     lr: 0.0001
+#     epoches: 5
+#     opset: 11
+# pred_threshold : 0.5
+# seed: 42
+# ml_flow:
+#     server: "http://128.0.1.1:8080"
+#     experiment_name: "Segmentation test 100"
+# dvc:
+#     pull: "dvc pull"
+#     add_model: "dvc add model"
+#     push: "dvc push"
